@@ -112,12 +112,26 @@ if uploaded:
 
 
     # -----------------------------------------
-    # ✅ YouTube Recommendations
-    # -----------------------------------------
-    st.subheader("🎥 Recommended YouTube Videos")
+      # ✅ YouTube Recommendations
+st.subheader("🎥 Recommended YouTube Videos")
 
-    topic = classes[pred_index] + " Alzheimer awareness"
-    videos = fetch_youtube_videos(topic)
+# Different query for each Alzheimer stage
+topic_map = {
+    "Mild Dementia": "early dementia care tips family",
+    "Moderate Dementia": "dementia caregiving routine step by step",
+    "Non Demented": "brain exercise daily memory improvement",
+    "Very mild Dementia": "mild cognitive impairment brain exercises"
+}
+
+topic = topic_map.get(classes[pred_index], "brain health tips")
+
+videos = fetch_youtube_videos(topic)
+
+# Shuffle to get variety
+import random
+random.shuffle(videos)
+videos = videos[:4]
+
 
     for title, thumb, link in videos:
         st.markdown(f"""
