@@ -132,8 +132,7 @@ import random
 random.shuffle(videos)
 videos = videos[:4]
 
-
-    for title, thumb, link in videos:
+for title, thumb, link in videos:
         st.markdown(f"""
         <a href="{link}" target="_blank">
             <img src="{thumb}" width="240"><br>
