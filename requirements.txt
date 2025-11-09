@@ -2,3 +2,5 @@ streamlit
 tensorflow
 numpy
 pillow
+matplotlib
+google-api-python-client
