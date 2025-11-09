@@ -97,6 +97,32 @@ if uploaded:
 
     st.success(f"### ✅ Prediction: **{classes[pred_index]}**")
     st.info(f"Confidence: **{confidence:.2f}%**")
+    # ✅ YouTube Recommendations
+    st.subheader("🎥 Recommended YouTube Videos")
+
+    topic_map = {
+        "Mild Dementia": "early dementia care tips family",
+        "Moderate Dementia": "dementia caregiving routine step by step",
+        "Non Demented": "brain exercise daily memory improvement",
+        "Very mild Dementia": "mild cognitive impairment brain exercises"
+    }
+
+    topic = topic_map.get(classes[pred_index], "brain health tips")
+
+    videos = fetch_youtube_videos(topic)
+
+    import random
+    random.shuffle(videos)
+    videos = videos[:4]
+
+    for title, thumb, link in videos:
+        st.markdown(f"""
+        <a href="{link}" target="_blank">
+            <img src="{thumb}" width="240"><br>
+            {title}
+        </a>
+        <br><br>
+        """, unsafe_allow_html=True)
 
 
     # -----------------------------------------
@@ -109,37 +135,5 @@ if uploaded:
     ax.set_title("Prediction Probabilities")
     plt.xticks(rotation=20)
     st.pyplot(fig)
-
-
-    # -----------------------------------------
-      # ✅ YouTube Recommendations
-st.subheader("🎥 Recommended YouTube Videos")
-
-# Different query for each Alzheimer stage
-topic_map = {
-    "Mild Dementia": "early dementia care tips family",
-    "Moderate Dementia": "dementia caregiving routine step by step",
-    "Non Demented": "brain exercise daily memory improvement",
-    "Very mild Dementia": "mild cognitive impairment brain exercises"
-}
-
-topic = topic_map.get(classes[pred_index], "brain health tips")
-
-videos = fetch_youtube_videos(topic)
-
-# Shuffle to get variety
-import random
-random.shuffle(videos)
-videos = videos[:4]
-
-for title, thumb, link in videos:
-        st.markdown(f"""
-        <a href="{link}" target="_blank">
-            <img src="{thumb}" width="240"><br>
-            {title}
-        </a>
-        <br><br>
-        """, unsafe_allow_html=True)
-
 
 
