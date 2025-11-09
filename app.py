@@ -130,27 +130,3 @@ if uploaded:
 
 
 
-# ----------------------------
-# ✅ SAMPLE IMAGES SECTION
-# ----------------------------
-st.subheader("📂 Sample Images (With Model Predictions)")
-
-sample_folder = "samples"
-
-if os.path.exists(sample_folder):
-    files = os.listdir(sample_folder)[:6]
-    cols = st.columns(3)
-
-    for idx, fname in enumerate(files):
-        path = os.path.join(sample_folder, fname)
-        img = image.load_img(path, target_size=(224,224))
-        arr = image.img_to_array(img)/255.0
-        pred = model.predict(np.expand_dims(arr, axis=0))
-        pred_class = classes[np.argmax(pred)]
-
-        with cols[idx % 3]:
-            st.image(path, width=180)
-            st.caption(f"Predicted: **{pred_class}**")
-
-else:
-    st.info("Upload a 'samples' folder with MRI images to show sample predictions.")
