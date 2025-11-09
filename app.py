@@ -9,7 +9,7 @@ from googleapiclient.discovery import build
 # ----------------------------
 # ✅ CONFIG
 # ----------------------------
-YOUTUBE_API_KEY = "AIza......your real key here..."  # <-- PUT YOUR YOUTUBE API KEY HERE
+YOUTUBE_API_KEY = "AIzaSyCjIO1SrRPZ1BnevEgvkfUsEj4uIS2VCE4"  # <-- PUT YOUR YOUTUBE API KEY HERE
 
 st.set_page_config(page_title="Alzheimer Detection", layout="centered")
 
